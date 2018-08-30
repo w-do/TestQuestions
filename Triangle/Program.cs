@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Triangle
 {
@@ -10,6 +6,22 @@ namespace Triangle
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter three integers:");
+
+            try
+            {
+                var sideOne = int.Parse(Console.ReadLine());
+                var sideTwo = int.Parse(Console.ReadLine());
+                var sideThree = int.Parse(Console.ReadLine());
+
+                Console.WriteLine(TriangleChecker.GetTriangleType(sideOne, sideTwo, sideThree));
+            }
+            catch
+            {
+                Console.WriteLine("Invalid input.");
+            }
+
+            Console.ReadLine();
         }
     }
 }
