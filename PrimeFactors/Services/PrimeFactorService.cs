@@ -14,11 +14,11 @@ namespace PrimeFactors.Services
             _primeService = primeService;
         }
 
-        public IList<int> GetPrimeFactors(int number)
+        public IEnumerable<int> GetPrimeFactors(int number)
         {
             if (number < 2)
             {
-                throw new ArgumentException();
+                return new List<int>();
             }
 
             var squareRoot = (int)Math.Sqrt(number);
@@ -27,7 +27,7 @@ namespace PrimeFactors.Services
             return PrimeFactorize(number, primes);
         }
 
-        private List<int> PrimeFactorize(int number, IList<int> primes)
+        private IEnumerable<int> PrimeFactorize(int number, IList<int> primes)
         {
             if (!primes.Any())
             {
@@ -38,7 +38,7 @@ namespace PrimeFactors.Services
 
             var prime = primes.First();
 
-            if (number % primes.First() == 0)
+            if (number % prime == 0)
             {
                 var factors = new List<int> { prime };
                 factors.AddRange(PrimeFactorize(number / prime, primes));

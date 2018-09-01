@@ -6,12 +6,12 @@ namespace PrimeFactors.Services
 {
     public class PrimeService : IPrimeService
     {
+        private IList<int> _knownPrimes;
         private int _highestKnownInt;
-        private IList<int> _primes;
 
         public PrimeService()
         {
-            _primes = new List<int> { 2 };
+            _knownPrimes = new List<int> { 2 };
             _highestKnownInt = 2;
         }
 
@@ -19,31 +19,31 @@ namespace PrimeFactors.Services
         {
             if (_highestKnownInt < number)
             {
-                CalculatePrimesUpTo(number);
+                CheckForPrimesUpTo(number);
             }
 
-            return _primes.Contains(number);
+            return _knownPrimes.Contains(number);
         }
 
         public IList<int> GetPrimesUpTo(int number)
         {
             if (number > _highestKnownInt)
             {
-                CalculatePrimesUpTo(number);
+                CheckForPrimesUpTo(number);
             }
 
-            return _primes.Where(x => x <= number).ToList();
+            return _knownPrimes.Where(x => x <= number).ToList();
         }
 
-        private void CalculatePrimesUpTo(int number)
+        private void CheckForPrimesUpTo(int number)
         {
-            for (var i = _highestKnownInt + 1; i < number; i++)
+            for (var i = _highestKnownInt + 1; i <= number; i++)
             {
                 _highestKnownInt = i;
 
-                if (!_primes.Any(x => i % x == 0))
+                if (!_knownPrimes.Any(x => i % x == 0))
                 {
-                    _primes.Add(i);
+                    _knownPrimes.Add(i);
                 }
             }
         }

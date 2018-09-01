@@ -1,85 +1,111 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 
 namespace Triangle.Test
 {
     public class GetTriangleTypeTests
     {
         [Theory]
-        [InlineData(0, 0, 0)]
-        [InlineData(-1, -1, -1)]
-        [InlineData(3, 0, 2)]
-        [InlineData(4, 5, -6)]
-        [InlineData(1, 0, -1)]
-        public void GetTriangleType_ZeroOrNegativeSides_ReturnsInvalidTriangle(int sideOne, int sideTwo, int sideThree)
+        [InlineData(0, 0, 0)] // all zeroes
+        [InlineData(-1, -1, -1)] // all negatives
+        [InlineData(-2147483647, -2147483647, -2147483647)]
+        [InlineData(3, 0, 2)] // one zero
+        [InlineData(4, 5, -6)] // one negative
+        [InlineData(1, 0, -1)] // one of each
+        [InlineData(1, 2, 3)] // largest side equals smaller sides
+        [InlineData(3, 3, 10)] // largest side exceeds smaller sides
+        public void GetTriangleType_ImpossibleSides_ReturnsInvalidTriangle(int sideOne, int sideTwo, int sideThree)
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var result = triangleService.GetTriangleType(sideOne, sideTwo, sideThree);
+            var results = new List<string>
+            {
+                triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
+                triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
+                triangleService.GetTriangleType(sideTwo, sideOne, sideThree),
+                triangleService.GetTriangleType(sideTwo, sideThree, sideOne),
+                triangleService.GetTriangleType(sideThree, sideOne, sideTwo),
+                triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
+            };
 
-            Assert.Equal("Not a valid triangle", result);
+            foreach (var result in results)
+            {
+                Assert.Equal("Not a valid triangle", result);
+            }
         }
 
         [Theory]
-        [InlineData(1, 2, 3)]
-        [InlineData(10, 3, 4)]
-        [InlineData(1, 6, 2)]
-        public void GetTriangleType_LargestSideExceedsSumOfOthers_ReturnsInvalidTriangle(int sideOne, int sideTwo, int sideThree)
-        {
-            var triangleService = new TriangleService(new PolygonService());
-
-            var result = triangleService.GetTriangleType(sideOne, sideTwo, sideThree);
-
-            Assert.Equal("Not a valid triangle", result);
-        }
-
-        [Theory]
-        [InlineData(1, 1, 1)]
-        [InlineData(5, 5, 5)]
+        [InlineData(1, 1, 1)] // smallest valid equilateral
         [InlineData(600, 600, 600)]
-        public void GetTriangleType_ThreePositiveSides_ReturnsEquilateral(int sideOne, int sideTwo, int sideThree)
+        [InlineData(2147483647, 2147483647, 2147483647)] // max int
+        public void GetTriangleType_ThreeEqualSides_ReturnsEquilateral(int sideOne, int sideTwo, int sideThree)
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var result = triangleService.GetTriangleType(sideOne, sideTwo, sideThree);
+            var results = new List<string>
+            {
+                triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
+                triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
+                triangleService.GetTriangleType(sideTwo, sideOne, sideThree),
+                triangleService.GetTriangleType(sideTwo, sideThree, sideOne),
+                triangleService.GetTriangleType(sideThree, sideOne, sideTwo),
+                triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
+            };
 
-            Assert.Equal("Equilateral", result);
+            foreach (var result in results)
+            {
+                Assert.Equal("Equilateral", result);
+            }
         }
 
         [Theory]
-        [InlineData(2, 2, 1)]
-        [InlineData(10, 3, 10)]
-        [InlineData(20, 11, 11)]
+        [InlineData(2, 2, 1)] // unique side is smallest
+        [InlineData(3, 2, 2)] // unique side is largest
+        [InlineData(2147483647, 2147483647, 2147483646)] // largest isoceles with valid ints
+        [InlineData(2147483647, 2147483647, 1)] // min and max sides
         public void GetTriangleType_ExactlyTwoEqualSides_ReturnsIsosceles(int sideOne, int sideTwo, int sideThree)
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var result = triangleService.GetTriangleType(sideOne, sideTwo, sideThree);
+            var results = new List<string>
+            {
+                triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
+                triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
+                triangleService.GetTriangleType(sideTwo, sideOne, sideThree),
+                triangleService.GetTriangleType(sideTwo, sideThree, sideOne),
+                triangleService.GetTriangleType(sideThree, sideOne, sideTwo),
+                triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
+            };
 
-            Assert.Equal("Isosceles", result);
+            foreach (var result in results)
+            {
+                Assert.Equal("Isosceles", result);
+            }
         }
 
         [Theory]
-        [InlineData(2, 3, 4)]
-        [InlineData(100, 55, 150)]
-        [InlineData(30, 15, 25)]
+        [InlineData(2, 3, 4)] // smallest valid scalene
+        [InlineData(507, 379, 422)]
+        [InlineData(2147483647, 2147483646, 2147483645)] // largest valid scalene
+        [InlineData(2147483647, 2147483646, 2)]
         public void GetTriangleType_NoEqualSides_ReturnsScalene(int sideOne, int sideTwo, int sideThree)
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var result = triangleService.GetTriangleType(sideOne, sideTwo, sideThree);
+            var results = new List<string>
+            {
+                triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
+                triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
+                triangleService.GetTriangleType(sideTwo, sideOne, sideThree),
+                triangleService.GetTriangleType(sideTwo, sideThree, sideOne),
+                triangleService.GetTriangleType(sideThree, sideOne, sideTwo),
+                triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
+            };
 
-            Assert.Equal("Scalene", result);
-        }
-
-        [Theory]
-        [InlineData(2147483647, 2147483647, 2147483647)]
-        public void GetTriangleType_LargeEquilateral_ReturnsEquilateral(int sideOne, int sideTwo, int sideThree)
-        {
-            var triangleService = new TriangleService(new PolygonService());
-
-            var result = triangleService.GetTriangleType(sideOne, sideTwo, sideThree);
-
-            Assert.Equal("Equilateral", result);
+            foreach (var result in results)
+            {
+                Assert.Equal("Scalene", result);
+            }
         }
     }
 }

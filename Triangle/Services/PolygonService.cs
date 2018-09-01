@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Triangle.Interfaces;
 
@@ -13,15 +14,12 @@ namespace Triangle
                 return false;
             }
 
-            // Originally this was "IsTriangle" but I realized the following two checks should apply to any polygon
-
-            // no invalid sides
             if (sides.Any(x => x <= 0))
             {
                 return false;
             }
 
-            var orderedSides = sides.OrderByDescending(x => x);
+            var orderedSides = sides.Select(Convert.ToInt64).OrderByDescending(x => x);
 
             var largestSide = orderedSides.First();
             var sumOfRemainingSides = orderedSides.Sum() - largestSide;

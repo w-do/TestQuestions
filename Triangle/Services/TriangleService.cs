@@ -31,7 +31,6 @@ namespace Triangle
                 return "Isosceles";
             }
 
-            // If a valid triangle is not an equilateral or isoscelese triangle, it must be a scalene triangle
             return "Scalene";
         }
 
