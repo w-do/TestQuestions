@@ -14,7 +14,9 @@ namespace Triangle
                 var sideTwo = int.Parse(Console.ReadLine());
                 var sideThree = int.Parse(Console.ReadLine());
 
-                Console.WriteLine(TriangleChecker.GetTriangleType(sideOne, sideTwo, sideThree));
+                var triangleService = new TriangleService(new PolygonService());
+
+                Console.WriteLine(triangleService.GetTriangleType(sideOne, sideTwo, sideThree));
             }
             catch
             {
