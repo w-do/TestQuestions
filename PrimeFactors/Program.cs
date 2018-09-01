@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PrimeFactors.Services;
+using System;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrimeFactors
 {
@@ -10,6 +9,21 @@ namespace PrimeFactors
     {
         static void Main(string[] args)
         {
+            var fileContents = File.ReadAllText(@"..\..\..\numbers.txt");
+
+            var numbers = fileContents.Split('\n')
+                .Select(x => int.Parse(x))
+                .ToList();
+
+            var primeFactorService = new PrimeFactorService(new PrimeService());
+
+            foreach (var number in numbers)
+            {
+                var primeFactors = primeFactorService.GetPrimeFactors(number);
+                Console.WriteLine(string.Join(",", primeFactors));
+            }
+
+            Console.ReadLine();
         }
     }
 }

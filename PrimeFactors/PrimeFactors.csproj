@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IPrimeService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PrimeFactorService.cs" />
+    <Compile Include="Services\PrimeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
