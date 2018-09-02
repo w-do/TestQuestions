@@ -19,7 +19,7 @@ namespace PrimeFactors
             var primeFactorLists = fileContents.Split('\n')
                 .Select(x => primeFactorService.GetPrimeFactors(int.Parse(x)));
 
-            foreach(var list in primeFactorLists)
+            foreach (var list in primeFactorLists)
             {
                 Console.WriteLine(string.Join(", ", list));
             }

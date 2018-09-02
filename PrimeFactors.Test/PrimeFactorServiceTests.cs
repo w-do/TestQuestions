@@ -10,7 +10,7 @@ namespace PrimeFactors.Test
         [InlineData(1)]
         [InlineData(0)]
         [InlineData(-1)]
-        [InlineData(-2147483647)]
+        [InlineData(-2147483648)]
         public void GetPrimeFactors_InvalidNumber_ReturnsEmptyList(int number)
         {
             var primeFactorService = new PrimeFactorService(new PrimeService());

@@ -1,4 +1,5 @@
 ﻿using PrimeFactors.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,12 +18,19 @@ namespace PrimeFactors.Services
 
         public bool IsPrime(int number)
         {
-            if (_highestKnownInt < number)
+            if (_highestKnownInt >= number)
             {
-                CheckForPrimesUpTo(number);
+                return _knownPrimes.Contains(number);
             }
 
-            return _knownPrimes.Contains(number);
+            var squareRoot = (int)Math.Sqrt(number);
+
+            if (_highestKnownInt < squareRoot)
+            {
+                CheckForPrimesUpTo(squareRoot);
+            }
+
+            return !_knownPrimes.Any(x => number % x == 0);
         }
 
         public IList<int> GetPrimesUpTo(int number)
