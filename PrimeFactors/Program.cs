@@ -9,11 +9,11 @@ namespace PrimeFactors
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Enter file path:");
-            //var path = Console.ReadLine();
-            //var fileContents = File.ReadAllText(path);
+            Console.WriteLine("Enter file path:");
+            var path = Console.ReadLine();
+            var fileContents = File.ReadAllText(path);
 
-            var fileContents = File.ReadAllText(@"..\..\..\numbers.txt");
+            //var fileContents = File.ReadAllText(@"..\..\..\numbers.txt");
             var primeFactorService = new PrimeFactorService(new PrimeService());
 
             var primeFactorLists = fileContents.Split('\n')
