@@ -49,7 +49,10 @@ namespace PrimeFactors.Services
             {
                 _highestKnownInt = i;
 
-                if (!_knownPrimes.Any(x => i % x == 0))
+                var squareRoot = (int)Math.Sqrt(i);
+                var primesToCheck = _knownPrimes.Where(x => x <= squareRoot);
+
+                if (!primesToCheck.Any(x => i % x == 0))
                 {
                     _knownPrimes.Add(i);
                 }
