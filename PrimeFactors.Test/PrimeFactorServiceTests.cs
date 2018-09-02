@@ -47,11 +47,7 @@ namespace PrimeFactors.Test
             var result = primeFactorService.GetPrimeFactors(number);
 
             Assert.Equal(number, result.Aggregate(1, (x, y) => x * y));
-
-            foreach(var factor in result)
-            {
-                Assert.True(primeService.IsPrime(factor));
-            }
+            Assert.All(result, x => primeService.IsPrime(x));
         }
     }
 }
