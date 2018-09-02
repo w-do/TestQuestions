@@ -1,9 +1,11 @@
-##Question 4 queries
+## Question 4 queries
+
 Assumptions made:
-1. ID is the primary key in both tables
-2. CUSTOMER_ID is a foreign key to Customers
-3. Queries that ask for "all customers" without specifying any columns should select every column in the Customers table 
-4. "Between 2 and 5" is inclusive
+
+- ID is the primary key in both tables
+- CUSTOMER_ID is a foreign key to Customers
+- Queries that ask for "all customers" without specifying any columns should select every column in the Customers table 
+- "Between 2 and 5" is inclusive
 
 1.
 
