@@ -3,7 +3,7 @@ using Triangle.Interfaces;
 
 namespace Triangle
 {
-    public class TriangleService
+    public class TriangleService : ITriangleService
     {
         private readonly IPolygonService _polygonService;
 

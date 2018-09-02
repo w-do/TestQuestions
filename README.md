@@ -1,3 +1,18 @@
+## Question 1
+
+- Any positive int32 (1 to 2,147,483,647) will be accepted for a triangle side.
+- Entering a side with a value less than one will return the output "Not a valid triangle".
+- Entering three sides that cannot form a valid triangle in euclidean space will return the output "Not a valid triangle".
+
+## Question 2
+
+- No information provided on user input, unlike questions 1 and 3, so the integer linked list is a list of the integers from 1 to 100 while the string linked list is a list of dates, one year apart, from 1901-01-01 to 2000-01-01.
+
+## Question 3
+
+- Values in the file to be prime factored must be within the range of int32 (-2,147,483,648 to 2,147,483,647).
+- The output for any integers less than 2 in the specified file will be a blank line, as all integers below 2 are neither composite nor prime.
+
 ## Question 4 queries
 
 Assumptions made:

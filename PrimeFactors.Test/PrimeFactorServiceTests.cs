@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PrimeFactors.Test
 {
-    public class GetPrimeFactorsTests
+    public class PrimeFactorServiceTests
     {
         [Theory]
         [InlineData(1)]

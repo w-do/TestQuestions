@@ -62,7 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GetTriangleTypeTests.cs" />
+    <Compile Include="PolygonServiceTests.cs" />
+    <Compile Include="TriangleServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

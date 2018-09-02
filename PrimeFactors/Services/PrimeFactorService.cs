@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PrimeFactors.Services
 {
-    public class PrimeFactorService
+    public class PrimeFactorService : IPrimeFactorService
     {
         private readonly IPrimeService _primeService;
 
@@ -29,6 +29,8 @@ namespace PrimeFactors.Services
 
         private IEnumerable<int> PrimeFactorize(int number, IList<int> primes)
         {
+            // base case
+            // if list of primes is exhausted, our remaining number is either 1 or a prime
             if (!primes.Any())
             {
                 return number == 1
@@ -40,11 +42,13 @@ namespace PrimeFactors.Services
 
             if (number % prime == 0)
             {
+                // prime factor found
                 var factors = new List<int> { prime };
                 factors.AddRange(PrimeFactorize(number / prime, primes));
                 return factors;
             }
 
+            // not a prime factor, so remove and try the next
             primes.Remove(prime);
 
             return PrimeFactorize(number, primes);

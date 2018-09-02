@@ -9,7 +9,7 @@ namespace Triangle
     {
         public bool IsPolygon(IList<int> sides)
         {
-            if (!sides.Any())
+            if (sides.Count < 3)
             {
                 return false;
             }

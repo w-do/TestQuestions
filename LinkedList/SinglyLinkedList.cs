@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LinkedList
 {
-    class SinglyLinkedList<T>
+    public class SinglyLinkedList<T>
     {
-        public LinkedListItem<T> Head { get; set; }
+        public SinglyLinkedListNode<T> Head { get; set; }
 
-        public SinglyLinkedList(LinkedListItem<T> head)
+        public SinglyLinkedList() { }
+
+        public SinglyLinkedList(SinglyLinkedListNode<T> head)
         {
             Head = head;
         }
@@ -22,35 +21,72 @@ namespace LinkedList
                 return;
             }
 
-            Head = new LinkedListItem<T>(values.First());
+            Head = new SinglyLinkedListNode<T>(values.First());
             var prev = Head;
 
             for (var i = 1; i < values.Count(); i++)
             {
-                prev.Next = new LinkedListItem<T>(values[i]);
+                prev.Next = new SinglyLinkedListNode<T>(values[i]);
+                prev = prev.Next;
             }
         }
 
-        public void AddItem(LinkedListItem<T> item)
+        //public void AddToEnd(SinglyLinkedListNode<T> item)
+        //{
+        //    if (Head == null)
+        //    {
+        //        Head = item;
+        //    }
+
+        //    var last = Head;
+
+        //    while (last.Next != null)
+        //    {
+        //        last = last.Next;
+        //    }
+
+        //    last.Next = item;
+        //}
+
+        //public void AddToStart(SinglyLinkedListNode<T> item)
+        //{
+        //    if (Head != null)
+        //    {
+        //        item.Next = Head;
+        //    }
+
+        //    Head = item;
+        //}
+
+        public SinglyLinkedListNode<T> GetFromEnd(int distanceFromEnd)
         {
-            if (Head == null)
+            if (distanceFromEnd < 1 || Head == null)
             {
-                Head = item;
+                return null;
             }
 
-            var last = Head;
+            var current = Head;
+            var lastXNodes = new Queue<SinglyLinkedListNode<T>>();
+            lastXNodes.Enqueue(Head);
 
-            while (last.Next != null)
+            while (current.Next != null)
             {
-                last = last.Next;
+                current = current.Next;
+
+                lastXNodes.Enqueue(current);
+
+                if (lastXNodes.Count > distanceFromEnd)
+                {
+                    lastXNodes.Dequeue();
+                }
             }
 
-            last.Next = item;
-        }
+            if (lastXNodes.Count == distanceFromEnd)
+            {
+                return lastXNodes.Dequeue();
+            }
 
-        public LinkedList<T> GetFromEnd(int distanceFromEnd)
-        {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IPolygonService.cs" />
+    <Compile Include="Interfaces\ITriangleService.cs" />
     <Compile Include="Services\PolygonService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
