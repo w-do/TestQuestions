@@ -31,33 +31,6 @@ namespace LinkedList
             }
         }
 
-        //public void AddToEnd(SinglyLinkedListNode<T> item)
-        //{
-        //    if (Head == null)
-        //    {
-        //        Head = item;
-        //    }
-
-        //    var last = Head;
-
-        //    while (last.Next != null)
-        //    {
-        //        last = last.Next;
-        //    }
-
-        //    last.Next = item;
-        //}
-
-        //public void AddToStart(SinglyLinkedListNode<T> item)
-        //{
-        //    if (Head != null)
-        //    {
-        //        item.Next = Head;
-        //    }
-
-        //    Head = item;
-        //}
-
         public SinglyLinkedListNode<T> GetFromEnd(int distanceFromEnd)
         {
             if (distanceFromEnd < 1 || Head == null)

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Triangle.Enumerations;
 using Triangle.Interfaces;
 
-namespace Triangle
+namespace Triangle.Services
 {
     public class TriangleService : ITriangleService
     {
@@ -12,26 +13,26 @@ namespace Triangle
             _polygonService = polygonService;
         }
 
-        public string GetTriangleType(int sideOne, int sideTwo, int sideThree)
+        public TriangleType GetTriangleType(int sideOne, int sideTwo, int sideThree)
         {
             if (!_polygonService.IsPolygon(new List<int> { sideOne, sideTwo, sideThree }))
             {
-                return "Not a valid triangle";
+                return TriangleType.NotAValidTriangle;
             }
 
             if (sideOne == sideTwo && sideTwo == sideThree)
             {
-                return "Equilateral";
+                return TriangleType.Equilateral;
             }
 
             if (sideOne == sideTwo ||
                 sideTwo == sideThree ||
                 sideThree == sideOne)
             {
-                return "Isosceles";
+                return TriangleType.Isosceles;
             }
 
-            return "Scalene";
+            return TriangleType.Scalene;
         }
 
     }

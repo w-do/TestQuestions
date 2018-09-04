@@ -1,7 +1,9 @@
-﻿namespace Triangle.Interfaces
+﻿using Triangle.Enumerations;
+
+namespace Triangle.Interfaces
 {
     interface ITriangleService
     {
-        string GetTriangleType(int sideOne, int sideTwo, int sideThree);
+        TriangleType GetTriangleType(int sideOne, int sideTwo, int sideThree);
     }
 }

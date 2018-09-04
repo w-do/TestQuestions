@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Triangle.Interfaces;
 
-namespace Triangle
+namespace Triangle.Services
 {
     public class PolygonService : IPolygonService
     {

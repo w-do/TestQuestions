@@ -39,6 +39,7 @@ namespace PrimeFactors.Test
         [InlineData(4)]
         [InlineData(64)]
         [InlineData(1072497001)]
+        [InlineData(2147117569)]
         [InlineData(2147483646)]
         public void IsPrime_CompositeNumber_ReturnsFalse(int number)
         {

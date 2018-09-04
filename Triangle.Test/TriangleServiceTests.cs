@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Triangle.Enumerations;
+using Triangle.Services;
 using Xunit;
 
 namespace Triangle.Test
@@ -18,7 +20,7 @@ namespace Triangle.Test
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var results = new List<string>
+            var results = new List<TriangleType>
             {
                 triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
                 triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
@@ -28,7 +30,7 @@ namespace Triangle.Test
                 triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
             };
 
-            Assert.All(results, x => Assert.Equal("Not a valid triangle", x));
+            Assert.All(results, x => Assert.Equal(TriangleType.NotAValidTriangle, x));
         }
 
         [Theory]
@@ -39,7 +41,7 @@ namespace Triangle.Test
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var results = new List<string>
+            var results = new List<TriangleType>
             {
                 triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
                 triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
@@ -49,7 +51,7 @@ namespace Triangle.Test
                 triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
             };
 
-            Assert.All(results, x => Assert.Equal("Equilateral", x));
+            Assert.All(results, x => Assert.Equal(TriangleType.Equilateral, x));
         }
 
         [Theory]
@@ -61,7 +63,7 @@ namespace Triangle.Test
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var results = new List<string>
+            var results = new List<TriangleType>
             {
                 triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
                 triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
@@ -71,7 +73,7 @@ namespace Triangle.Test
                 triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
             };
 
-            Assert.All(results, x => Assert.Equal("Isosceles", x));
+            Assert.All(results, x => Assert.Equal(TriangleType.Isosceles, x));
         }
 
         [Theory]
@@ -83,7 +85,7 @@ namespace Triangle.Test
         {
             var triangleService = new TriangleService(new PolygonService());
 
-            var results = new List<string>
+            var results = new List<TriangleType>
             {
                 triangleService.GetTriangleType(sideOne, sideTwo, sideThree),
                 triangleService.GetTriangleType(sideOne, sideThree, sideTwo),
@@ -93,7 +95,7 @@ namespace Triangle.Test
                 triangleService.GetTriangleType(sideThree, sideTwo, sideOne)
             };
 
-            Assert.All(results, x => Assert.Equal("Scalene", x));
+            Assert.All(results, x => Assert.Equal(TriangleType.Scalene, x));
         }
     }
 }

@@ -38,6 +38,7 @@ namespace PrimeFactors.Test
         [InlineData(4)]
         [InlineData(64)]
         [InlineData(65498)]
+        [InlineData(2147117569)]
         [InlineData(2147483646)]
         public void GetPrimeFactors_CompositeNumber_ReturnsCorrectPrimeFactors(int number)
         {
