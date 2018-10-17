@@ -1,3 +1,5 @@
+A take-home coding test for an interview I had in September 2018.
+
 ## Question 1
 
 - Any positive int32 (1 to 2,147,483,647) will be accepted for a triangle side.
