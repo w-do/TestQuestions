@@ -7,6 +7,8 @@ A take-home coding test for an interview I had in September 2018.
 >
 > Support this answer with unit tests.
 
+See Triangle and Triangle.Test for solution and tests.
+
 My assumptions:
 - Any positive int32 (1 to 2,147,483,647) will be accepted for a triangle side.
 - Entering a side with a value less than one will return the output "Not a valid triangle".
@@ -21,6 +23,8 @@ My assumptions:
 >
 > Solve the same question but assume the linked list contains strings instead of integers.
 
+See LinkedList and LinkedList.Test for solution and tests
+
 My assumptions:
 - No information was provided re: user input, unlike questions 1 and 3, so the integer linked list is a list of the integers from 1 to 100 while the string linked list is a list of dates, one year apart, from 1901-01-01 to 2000-01-01.
 
@@ -31,6 +35,8 @@ My assumptions:
 >
 > Support your work with a rich set of unit tests.
 
+See PrimeFactors and PrimeFactors.Test for solution and tests.
+
 My assumptions:
 - Values in the file to be prime factored must be within the range of int32 (-2,147,483,648 to 2,147,483,647).
 - The output for any integers less than 2 in the specified file will be a blank line, as all integers below 2 are neither composite nor prime.
@@ -40,12 +46,14 @@ My assumptions:
 > Assume a database with the following structure
 >
 > Customers
+>
 > | ID | NAME | ADDRESS | PHONE NUMBER | EMAIL |
 > | --- | --- | --- | --- | --- |
 >
 > Orders
+>
 > | ID | CUSTOMER_ID | ORDER_AMOUNT | ORDER_ADDRESS |
-> | --- | --- | --- | --- | --- |
+> | --- | --- | --- | --- |
 
 My assumptions:
 - ID is the primary key in both tables
